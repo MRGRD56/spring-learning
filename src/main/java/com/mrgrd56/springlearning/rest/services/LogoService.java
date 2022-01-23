@@ -20,15 +20,16 @@ public class LogoService {
     private CompletableFuture<byte[]> fetchLogo() {
         val completableFuture = new CompletableFuture<byte[]>();
 
-        var httpClient = HttpClient.newHttpClient();
+        val httpClient = HttpClient.newHttpClient();
 
-        var request = HttpRequest.newBuilder()
+        val request = HttpRequest.newBuilder()
                 .GET()
                 .uri(LOGO_URL)
                 .build();
 
-        var responseFuture = httpClient.sendAsync(
+        val responseFuture = httpClient.sendAsync(
                 request, HttpResponse.BodyHandlers.ofByteArray());
+
         responseFuture.thenAccept(response -> {
             val body = (byte[]) response.body();
             System.out.println(body.getClass());
